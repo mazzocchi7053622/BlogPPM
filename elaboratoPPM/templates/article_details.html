@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{%load static%}
+
+{% block title %}{{post.title}}
+{% endblock %}
+
+{% block content %}
+    <div class="card mb-3">
+      <div class="row g-0">
+          <img src="{%static '/myproject/images/profile_image.png'%}" class="fixed-image" style="width: 120px; height: 110px;" alt="...">
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">By: {{post.author.first_name}} {{post.author.last_name}}</h5>
+
+            <p class="text-small text-muted">
+
+                <a href="{%url 'show_profile_page' post.author.id%}">Profile Page</a>
+                {% if post.author.profile.website_url %}
+                 | <a href="{{post.author.profile.website_url}}"> Website</a> |
+                {%endif%}
+                {% if post.author.profile.facebook_url %}
+                <a href="{{post.author.profile.facebook_url}}">Facebook</a> |
+                {%endif%}
+                {% if post.author.profile.instagram_url %}
+                <a href="{{post.author.profile.instagram_url}}">Instagram</a>
+                {%endif%}
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/><br/>
+    <div>
+        <div  style="background-color: lightblue; border-bottom: 2px solid blue; padding: 10px 20px">
+        <h2>{{post.title}}</h2>
+        <small>
+           {{ post.post_date}}
+
+            {% if user.is_authenticated %}
+                {% if user.id == post.author.id %}
+                     - <a href="{% url 'update_post' post.pk %}">Edit</a>
+                     - <a href="{% url 'delete_post' post.pk %}">Delete</a>
+                {% endif %}
+            {% endif %}
+        </small>
+        <br/></div>
+
+        <div style="background-color: azure; padding: 0px 20px"><br/>{{post.body|safe}}<br/></div>
+    </div>
+
+
+    <br/><br/>
+    <form action ="{%url 'like_post' post.pk %}" method="POST"> {% csrf_token %}
+    {% if user.is_authenticated %}
+        {% if liked %}
+            <button type="submit", name="post_id", value="{{post.id}}", class="btn btn-danger btn-sm">UnLike</button>
+        {%else%}
+            <button type="submit", name="post_id", value="{{post.id}}", class="btn btn-primary btn-sm">Like</button>
+        {% endif %}
+    {% else %}
+    <small><a href="{% url 'login'%}">Login</a> to like</small>
+        {% endif %} </form>
+
+    - {{total_likes}} likes
+
+    <br/><br/>
+    <a href="{% url 'home'%}" class="btn btn-secondary" style="background-color: lightblue; color: black">Back</a>
+    <br/><br/><br/>
+
+    <h3>Comments...</h3>
+    {%if not post.comments.all%}
+    <p>No Comments Yet..   <a href="{%url 'add_comment' post.pk%}"> Add One</a></p><br/>
+    {%else%}
+        {% if user.is_authenticated %}
+            <a href="{%url 'add_comment' post.pk%}">Add Comment</a><br/>
+
+            {%for comment in post.comments.all%}
+                <br/>
+                <div>
+                    <div style="background-color: lightblue">
+                    <strong>{{comment.name}} - {{comment.date_added}}</strong>
+                    </div>
+                    <div style="background-color: azure">{{comment.body}}</div></div>
+
+            {%endfor%}
+
+        {%else%}
+            <small><a href="{% url 'login'%}">Login</a> to comment</small>
+        {%endif%}
+    {% endif %}
+
+{% endblock %}

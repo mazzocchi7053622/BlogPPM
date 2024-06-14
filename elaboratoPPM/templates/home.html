@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+        {% if user.is_authenticated %}
+        <div class="upper-side">
+            <h1>Post del Blog</h1>
+            <ul>
+                {% for post in object_list %}
+                    {% if post.category == "blog" %}
+                        <li>
+                            <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a> -
+                            <a href="{% url 'category' post.category %}">{{ post.category }}</a>
+                            <span>&nbsp;-&nbsp;</span>{{ post.author.first_name }} {{ post.author.last_name }} - {{post.post_date}}
+                            <small>{{ post.body|slice:"45"|safe }}...</small>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+     {% endif %}
+        <div class="bottom_side">
+            <h1>Altri Post</h1>
+            <ul>
+                {% for post in object_list %}
+                    {% if post.category != "blog" %}
+                        <li>
+                            <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a> -
+                            <a href="{% url 'category' post.category %}">{{ post.category }}</a>
+                            <span>&nbsp;-&nbsp;</span>{{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }}
+                            <small>{{ post.body|slice:"45"|safe }}...</small>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+</div>
+{% endblock %}

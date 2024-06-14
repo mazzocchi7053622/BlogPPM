@@ -1,0 +1,26 @@
+
+
+.navbar-azzurra {
+  background-color: lightblue; /* Azzurro cielo */
+}
+
+a {
+    color: black; /* Imposta il colore del testo a nero */
+    text-decoration: none; /* Rimuove la sottolineatura */
+    font-weight: bold
+}
+
+.dropdown-menu.dropdown-menu-right {
+    right: 0;
+    left: auto;
+}
+
+.upper-side, .bottom-side {
+    flex-direction: column;
+    height: 50%;
+    display: flex;
+}
+
+.upper-side{
+
+}
