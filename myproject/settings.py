@@ -84,7 +84,7 @@ DATABASES = {
             'USER': str(os.getenv('POSTGRES_USER', 'default')),
             'PASSWORD': str(os.getenv('POSTGRES_PASSWORD', 'gL7OBD8swJIt')),
             'HOST': str(os.getenv('POSTGRES_HOST', 'ep-floral-field-a4gzvj7y-pooler.us-east-1.aws.neon.tech')),
-            'PORT': str(os.getenv('POSTGRES_PORT', '5432')),  # Assicurati che questo sia una stringa
+            'PORT': str(os.getenv('POSTGRES_PORT', '')),  # Assicurati che questo sia una stringa
             'OPTIONS': {
                 'sslmode': 'require',
             },
