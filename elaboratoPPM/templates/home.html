@@ -2,8 +2,8 @@
 {% block content %}
 <div class="container">
         {% if user.is_authenticated %}
-        <div class="upper-side">
-            <h1>Post del Blog</h1>
+        <div class="upper-side" style="border: 1px solid #4C81C9; padding-left: 10px">
+            <h1 style="color: #4C81C9">POST AULA 318:</h1>
             <ul>
                 {% for post in object_list %}
                     {% if post.category == "blog" %}
@@ -17,9 +17,10 @@
                 {% endfor %}
             </ul>
         </div>
+    <br/><br/>
      {% endif %}
-        <div class="bottom_side">
-            <h1>Altri Post</h1>
+        <div class="bottom_side" style="border: 1px solid #4C81C9; padding-left: 10px">
+            <h1 style="color: #4C81C9">CDM INFO:</h1>
             <ul>
                 {% for post in object_list %}
                     {% if post.category != "blog" %}

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="card mb-3">
+    <div class="card mb-3" style="border: 1px solid blue">
       <div class="row g-0">
           <img src="{%static '/myproject/images/profile_image.png'%}" class="fixed-image" style="width: 120px; height: 110px;" alt="...">
         <div class="col-md-8">
@@ -14,7 +14,7 @@
 
             <p class="text-small text-muted">
 
-                <a href="{%url 'show_profile_page' post.author.id%}">Profile Page</a>
+                <a href="{%url 'show_profile_page' post.author.id%}">See more..</a>
                 {% if post.author.profile.website_url %}
                  | <a href="{{post.author.profile.website_url}}"> Website</a> |
                 {%endif%}
@@ -58,9 +58,7 @@
         {% endif %}
     {% else %}
     <small><a href="{% url 'login'%}">Login</a> to like</small>
-        {% endif %} </form>
-
-    - {{total_likes}} likes
+        {% endif %} - {{total_likes}} likes <br/>
 
     <br/><br/>
     <a href="{% url 'home'%}" class="btn btn-secondary" style="background-color: lightblue; color: black">Back</a>
@@ -77,12 +75,11 @@
                 <br/>
                 <div>
                     <div style="background-color: lightblue">
-                    <strong>{{comment.name}} - {{comment.date_added}}</strong>
+                        <strong>{{comment.name}} - {{comment.date_added}}</strong>
                     </div>
-                    <div style="background-color: azure">{{comment.body}}</div></div>
-
+                <div style="background-color: azure">{{comment.body}}</div>
+                </div>
             {%endfor%}
-
         {%else%}
             <small><a href="{% url 'login'%}">Login</a> to comment</small>
         {%endif%}

@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-
+<div class="container">
 {% if category_posts %}
-    <h1>{{ cats }}</h1>
+    <h1 style="color: #4C81C9">{{cats|upper}}:</h1>
 
     <ul>
+        <br/>
         {%for post in category_posts%}
         <li><a href="{% url 'article_detail' post.pk %}">{{post.title}}</a>
             - {{post.author.first_name}} {{post.author.last_name}} - {{post.post_date}}
@@ -18,5 +19,6 @@
 {% else %}
     <h2>Mi dispiace!  Non ci sono ancora Post per questa Categoria  :(</h2>
 {% endif %}
+</div>
 
 {% endblock %}
