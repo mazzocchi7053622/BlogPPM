@@ -81,15 +81,48 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DATABASE', 'verceldb'),
-        'USER': os.getenv('POSTGRES_USER', 'default'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'gL7OBD8swJIt'),
-        'HOST': os.getenv('POSTGRES_HOST', 'ep-floral-field-a4gzvj7y-pooler.us-east-1.aws.neon.tech'),
-        'PORT': '',  # Assicurati che questo sia una stringa vuota se non usato esplicitamente
+        'NAME': 'verceldb',
+        'USER': 'default',
+        'PASSWORD': 'gL7OBD8swJIt',
+        'HOST': 'ep-floral-field-a4gzvj7y-pooler.us-east-1.aws.neon.tech',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',  # Assicurati che la connessione utilizzi SSL
+        },
+    },
+    'prisma': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'verceldb',
+        'USER': 'default',
+        'PASSWORD': 'gL7OBD8swJIt',
+        'HOST': 'ep-floral-field-a4gzvj7y-pooler.us-east-1.aws.neon.tech',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+            'pgbouncer': True,
+            'connect_timeout': 15,
+        },
+    },
+    'no_ssl': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'verceldb',
+        'USER': 'default',
+        'PASSWORD': 'gL7OBD8swJIt',
+        'HOST': 'ep-floral-field-a4gzvj7y-pooler.us-east-1.aws.neon.tech',
+        'PORT': '5432',
+        # Non specificare sslmode per connessioni senza SSL
+    },
+    'non_pooling': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'verceldb',
+        'USER': 'default',
+        'PASSWORD': 'gL7OBD8swJIt',
+        'HOST': 'ep-floral-field-a4gzvj7y.us-east-1.aws.neon.tech',
+        'PORT': '5432',
         'OPTIONS': {
             'sslmode': 'require',
         },
-    }
+    },
 }
 
 
