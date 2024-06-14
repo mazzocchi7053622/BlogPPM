@@ -77,19 +77,20 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': str(os.getenv('POSTGRES_DATABASE', 'verceldb')),
-            'USER': str(os.getenv('POSTGRES_USER', 'default')),
-            'PASSWORD': str(os.getenv('POSTGRES_PASSWORD', 'gL7OBD8swJIt')),
-            'HOST': str(os.getenv('POSTGRES_HOST', 'ep-floral-field-a4gzvj7y-pooler.us-east-1.aws.neon.tech')),
-            'PORT': str(os.getenv('POSTGRES_PORT', '')),  # Assicurati che questo sia una stringa
-            'OPTIONS': {
-                'sslmode': 'require',
-            },
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DATABASE', 'verceldb'),
+        'USER': os.getenv('POSTGRES_USER', 'default'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'gL7OBD8swJIt'),
+        'HOST': os.getenv('POSTGRES_HOST', 'ep-floral-field-a4gzvj7y-pooler.us-east-1.aws.neon.tech'),
+        'PORT': '',  # Assicurati che questo sia una stringa vuota se non usato esplicitamente
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
+}
 
 
 # Password validation
