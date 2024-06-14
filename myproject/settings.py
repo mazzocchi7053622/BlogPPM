@@ -78,11 +78,18 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': str(os.getenv('POSTGRES_DATABASE', 'verceldb')),
+            'USER': str(os.getenv('POSTGRES_USER', 'default')),
+            'PASSWORD': str(os.getenv('POSTGRES_PASSWORD', 'gL7OBD8swJIt')),
+            'HOST': str(os.getenv('POSTGRES_HOST', 'ep-floral-field-a4gzvj7y-pooler.us-east-1.aws.neon.tech')),
+            'PORT': str(os.getenv('POSTGRES_PORT', '5432')),  # Assicurati che questo sia una stringa
+            'OPTIONS': {
+                'sslmode': 'require',
+            },
+        }
     }
-}
 
 
 # Password validation
