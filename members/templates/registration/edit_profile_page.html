@@ -4,38 +4,44 @@
 
 {% if user.is_authenticated %}
     {% if user.id == profile.user.id %}
-        <h1 class="text-center my-4">Edit Profile</h1>
-        <div class="d-flex justify-content-center">
-            <div class="card shadow-sm p-4" style="max-width: 600px; width: 100%;">
-                <form method="POST">
-                    {% csrf_token %}
-                    {% for field in form %}
-                        {% if field.name != "email" and field.name != "password1" and field.name != "password2" %}
-                            <div class="form-group">
-                                {{ field.label_tag }}
-                                {{ field }}
-                                {% if field.errors %}
-                                    <div class="text-danger">
-                                        {{ field.errors }}
-                                    </div>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                    <div class="text-center mt-3">
-                        <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h3>Edit Profile</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
+                            </form>
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     {% else %}
-        <div class="alert alert-danger text-center" role="alert">
-            You're not allowed here!
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="alert alert-danger" role="alert">
+                        You're not allowed here!
+                    </div>
+                </div>
+            </div>
         </div>
     {% endif %}
 {% else %}
-    <div class="alert alert-danger text-center" role="alert">
-        You're not allowed here!
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="alert alert-danger" role="alert">
+                    You're not allowed here!
+                </div>
+            </div>
+        </div>
     </div>
 {% endif %}
 
