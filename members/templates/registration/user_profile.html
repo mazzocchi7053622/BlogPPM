@@ -1,42 +1,43 @@
 {% extends "base.html" %}
-{%load static%}
+{% load static %}
+
 {% block content %}
 
 {% if user.is_authenticated %}
-    <h1>{{page_user}}</h1>
-        <br/>
-        <div class="card mb-3" style="background-color: azure">
-          <div class="row g-0">
-              <img src="{%static '/myproject/images/profile_image.png'%}" class="fixed-image" style="width: 120px; height: 110px;" alt="...">
+    <h1>{{ page_user }}</h1>
+    <br/>
+    <div class="card mb-3" style="background-color: azure;">
+        <div class="row g-0">
+            <img src="{% static '/myproject/images/profile_image.png' %}" class="fixed-image" style="width: 120px; height: 110px;" alt="Profile Image">
             <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{page_user.user.first_name}} {{page_user.user.last_name}}</h5>
-                  <p><strong>Età: </strong>{{user.profile.età}}</p>
-                  <p><strong>Città:</strong> {{user.profile.città}}</p>
-                  <p><strong>Hobby: </strong>{{user.profile.hobby}}</p>
-                {% if user.profile.website_url %}
-                 <a href="{{user.profile.website_url}}"> Website</a>
-                {%endif%}
-                {% if user.profile.facebook_url %}
-                <a href="{{user.profile.facebook_url}}">Facebook</a>
-                {%endif%}
-                {% if user.profile.instagram_url %}
-                <a href="{{user.profile.instagram_url}}">Instagram</a>
-                {%endif%}
-                  <br/>
-                <p class="text-small text-muted">
-                  <h4>About me...</h4>
-                    {{user.profile.bio}}
+                <div class="card-body">
+                    <h5 class="card-title">{{ page_user.user.first_name }} {{ page_user.user.last_name }}</h5>
+                    <p><strong>Età:</strong> {{ user.profile.età }}</p>
+                    <p><strong>Città:</strong> {{ user.profile.città }}</p>
+                    <p><strong>Hobby:</strong> {{ user.profile.hobby }}</p>
 
+                    {% if user.profile.website_url %}
+                        <a href="{{ user.profile.website_url }}">Website</a>
+                    {% endif %}
 
-              </div>
+                    {% if user.profile.facebook_url %}
+                        <a href="{{ user.profile.facebook_url }}">Facebook</a>
+                    {% endif %}
+
+                    {% if user.profile.instagram_url %}
+                        <a href="{{ user.profile.instagram_url }}">Instagram</a>
+                    {% endif %}
+
+                    <hr>
+
+                    <h4>About me...</h4>
+                    <p>{{ user.profile.bio }}</p>
+                </div>
             </div>
-          </div>
         </div>
+    </div>
 {% else %}
-
-    You're not allowed here!
-
+    <p>You're not allowed here!</p>
 {% endif %}
 
 {% endblock %}
