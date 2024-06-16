@@ -3,22 +3,28 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <h1>Edit Settings</h1>
-    <br/>
+    <h1 class="text-center my-4">Edit Profile</h1>
 
-    <div class="form-group">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p}}
-            Inserisci siti web
-            <button class="btn btn-secondary">Update Profile</button>
-        </form>
+    <div class="d-flex justify-content-center">
+        <div class="card shadow-sm p-4" style="max-width: 600px; width: 100%;">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="form-group">
+                    <label for="websites">Inserisci siti web</label>
+                    <input type="text" id="websites" name="websites" class="form-control">
+                </div>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
+                </div>
+            </form>
+        </div>
     </div>
 
 {% else %}
-
-    You're not allowed here!
-
+    <div class="alert alert-danger text-center" role="alert">
+        You're not allowed here!
+    </div>
 {% endif %}
 
 {% endblock %}
