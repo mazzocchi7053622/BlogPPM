@@ -14,11 +14,6 @@
                             <div class="form-group">
                                 {{ field.label_tag }}
                                 {{ field }}
-                                {% if field.errors %}
-                                    <div class="text-danger">
-                                        {{ field.errors }}
-                                    </div>
-                                {% endif %}
                             </div>
                         {% endif %}
                     {% endfor %}
