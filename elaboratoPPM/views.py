@@ -31,9 +31,9 @@ class HomeView(ListView):
 
 def CategoryView(request, cats):
     def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
-        context = super(CategoryView, self).get_context_data(*args, **kwargs)
-        context['cat_menu'] = cat_menu
+        cat_menu = Category.objects.all().values_list('name', flat=True)  # Ottieni tutti i nomi delle categorie
+        context = super().get_context_data(*args, **kwargs)
+        context['cat_menu'] = list(cat_menu)  # Converte in lista e aggiunge al contesto
         return context
     category_posts = Post.objects.filter(category = cats)
     return render(request, 'categories.html', {'cats': cats.title(), 'category_posts': category_posts})
