@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime, date
 from ckeditor.fields import RichTextField
-from .models import Category
-
 
 CATEGORY_CHOICES= [
     ('blog', 'blog'),
