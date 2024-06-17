@@ -5,19 +5,15 @@ from datetime import datetime, date
 from ckeditor.fields import RichTextField
 from .models import Category
 
-def get_category_choices():
-    # Recupera le categorie dal database e le trasforma in una lista di tuple per le scelte del campo Form
-    categories = Category.objects.all().values_list('id', 'name')
-    return categories
-
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
 
-def get_category_choices():
-    return [(category.id, category.name) for category in Category.objects.all()]
+    def get_category_choices():
+        categories = Category.objects.all().values_list('id', 'name')
+        return categories
 
 
 class Profile(models.Model):
