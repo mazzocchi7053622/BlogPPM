@@ -32,6 +32,9 @@ class ShowProfilePageView(DetailView):
     model = Profile
     template_name = 'registration/user_profile.html'
 
+    def get_object(self, queryset=None):
+        return self.model.objects.get(pk=self.kwargs['pk'])
+
     def get_context_data(self, *args, **kwargs):
         context = super(ShowProfilePageView, self).get_context_data(*args, **kwargs)
 
