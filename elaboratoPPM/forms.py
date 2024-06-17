@@ -14,7 +14,7 @@ class PostForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
-        self.fields['category'].widget = forms.Select(choices=get_category_choices(), attrs={'class': 'form-control', 'id': 'cats'})
+        self.fields['category'].widget = forms.Select(choices=Category.get_category_choices(), attrs={'class': 'form-control', 'id': 'cats'})
 
 
 class EditForm(forms.ModelForm):
@@ -28,7 +28,7 @@ class EditForm(forms.ModelForm):
         }
     def __init__(self, *args, **kwargs):
         super(EditForm, self).__init__(*args, **kwargs)
-        self.fields['category'].widget = forms.Select(choices=get_category_choices(), attrs={'class': 'form-control', 'id': 'cats'})
+        self.fields['category'].widget = forms.Select(choices=Category.get_category_choices(), attrs={'class': 'form-control', 'id': 'cats'})
         
 
 class CommentForm(forms.ModelForm):
