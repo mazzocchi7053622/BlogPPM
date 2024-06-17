@@ -13,8 +13,9 @@
             <h5 class="card-title">By: {{post.author.first_name}} {{post.author.last_name}}</h5>
 
             <p class="text-small text-muted">
-
+                {% if post.author.profile.website_url %}
                 <a href="{%url 'show_profile_page' post.author.id%}">See more..</a>
+                {%endif%}
                 {% if post.author.profile.website_url %}
                  | <a href="{{post.author.profile.website_url}}"> Website</a> |
                 {%endif%}
@@ -70,19 +71,20 @@
     {%else%}
         {% if user.is_authenticated %}
             <a href="{%url 'add_comment' post.pk%}">Add Comment</a><br/>
-
-            {%for comment in post.comments.all%}
-                <br/>
-                <div>
-                    <div style="background-color: lightblue">
-                        <strong>{{comment.name}} - {{comment.date_added}}</strong>
-                    </div>
-                <div style="background-color: azure">{{comment.body}}</div>
-                </div>
-            {%endfor%}
         {%else%}
             <small><a href="{% url 'login'%}">Login</a> to comment</small>
         {%endif%}
+
+        {%for comment in post.comments.all%}
+            <br/>
+            <div>
+                <div style="background-color: lightblue">
+                    <strong>{{comment.name}} - {{comment.date_added}}</strong>
+                </div>
+            <div style="background-color: azure">{{comment.body}}</div>
+            </div>
+        {%endfor%}
+        
     {% endif %}
 
 {% endblock %}
