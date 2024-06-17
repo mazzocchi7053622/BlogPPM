@@ -24,7 +24,7 @@ class HomeView(ListView):
     ordering = ['-post_date']
     def get_context_data(self, *args, **kwargs):
         cat_menu = Category.objects.all()
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context = super(Category, self).get_context_data(*args, **kwargs)
         context['cat_menu'] = cat_menu
         return context
 
@@ -44,7 +44,7 @@ class ArticleDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         cat_menu = Category.objects.all()
-        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
+        context = super().get_context_data(*args, **kwargs)
 
         var = get_object_or_404(Post, id=self.kwargs['pk'])
         total_likes = var.total_likes()
