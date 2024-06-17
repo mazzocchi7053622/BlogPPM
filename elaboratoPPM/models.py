@@ -12,7 +12,7 @@ CATEGORY_CHOICES= [
     ('ripetizioni','ripetizioni'),
 ]
 class Category(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, choices=CATEGORY_CHOICES,)
 
     def __str__(self):
         return self.name
