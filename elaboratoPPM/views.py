@@ -32,12 +32,6 @@ class CategoryView(ListView):
     model = Post
     template_name = 'categories.html'
 
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
-        context = super(CategoryView, self).get_context_data(*args, **kwargs)
-        context['cat_menu'] = cat_menu
-        return context
-
     def get_queryset(self):
         cats = self.kwargs['cats']
         return Post.objects.filter(category=cats)
