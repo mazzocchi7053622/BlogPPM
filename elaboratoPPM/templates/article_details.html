@@ -14,7 +14,7 @@
 
             <p class="text-small text-muted">
                 {% if post.author.profile.website_url %}
-                <a href="{%url 'show_profile_page' user.id%}">See more..</a>
+                <a href="{%url 'show_profile_page' post.author.id.profile.id%}">See more..</a>
                 {%endif%}
                 {% if post.author.profile.website_url %}
                  | <a href="{{post.author.profile.website_url}}"> Website</a> |
