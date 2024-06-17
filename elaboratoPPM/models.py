@@ -3,8 +3,12 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime, date
 from ckeditor.fields import RichTextField
+from .models import Category
 
-
+def get_category_choices():
+    # Recupera le categorie dal database e le trasforma in una lista di tuple per le scelte del campo Form
+    categories = Category.objects.all().values_list('id', 'name')
+    return categories
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
