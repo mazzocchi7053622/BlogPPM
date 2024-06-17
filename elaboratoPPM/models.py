@@ -5,16 +5,22 @@ from datetime import datetime, date
 from ckeditor.fields import RichTextField
 from .models import Category
 
+
+CATEGORY_CHOICES= [
+    ('blog', 'blog'),
+    ('esami', 'esami'),
+    ('libri/appunti','libri/appunti'),
+    ('news','news'),
+    ('ripetizioni','ripetizioni'),
+]
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
 
-def get_category_choices():
-    categories = Category.objects.all().values_list('id', 'name')
-    return categories
-
+    def get_absolute_url(self):
+        return reverse('home')
 
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
@@ -39,7 +45,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = RichTextField(blank=True, null=True)
     post_date = models.DateTimeField(auto_now_add=True)
-    category = models.CharField(max_length=255, default='blog')
+    category = models.CharField(max_length=255, choices= CATEGORY_CHOICES, default='blog')
     likes = models.ManyToManyField(User, related_name='blog_posts')
 
     def total_likes(self):
