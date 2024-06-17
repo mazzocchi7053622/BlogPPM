@@ -9,9 +9,12 @@ class PostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id':'elder', 'type':'hidden' }),
-            'category': forms.Select(choices=category_choices, attrs={'class': 'form-control', 'id': 'cats'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
+        
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields['category'].widget = forms.Select(choices=get_category_choices(), attrs={'class': 'form-control', 'id': 'cats'})
 
 
 class EditForm(forms.ModelForm):
