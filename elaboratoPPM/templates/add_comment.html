@@ -6,6 +6,7 @@
 <br/><br/>
 <div class="form-group">
     <form method="POST">
+        {{user.id}}
         {% csrf_token %}
         {{form.as_p}}
         <button class="btn btn-primary">Add Comment</button>
