@@ -24,9 +24,11 @@ class EditForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'category': forms.Select(choices=category_choices, attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
+    def __init__(self, *args, **kwargs):
+        super(EditForm, self).__init__(*args, **kwargs)
+        self.fields['category'].widget = forms.Select(choices=get_category_choices(), attrs={'class': 'form-control', 'id': 'cats'})
         
 
 class CommentForm(forms.ModelForm):
