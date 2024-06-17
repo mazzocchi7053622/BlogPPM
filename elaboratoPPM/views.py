@@ -37,10 +37,10 @@ class CategoryView(ListView):
         context = super(CategoryView, self).get_context_data(*args, **kwargs)
         context['cat_menu'] = cat_menu
         return context
-        
-    category_posts = Post.objects.filter(category = cats)
-    return render(request, 'categories.html', {'cats': cats.title(), 'category_posts': category_posts})
 
+    def get_queryset(self):
+        cats = self.kwargs['cats']
+        return Post.objects.filter(category=cats)
         
 class ArticleDetailView(DetailView):
     model = Post
