@@ -39,7 +39,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = RichTextField(blank=True, null=True)
     post_date = models.DateTimeField(auto_now_add=True)
-    category = models.CharField(max_length=255, choices= category_choices, default='blog')
+    category = models.CharField(max_length=255, default='blog')
     likes = models.ManyToManyField(User, related_name='blog_posts')
 
     def total_likes(self):
