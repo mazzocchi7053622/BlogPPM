@@ -11,9 +11,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    def get_category_choices():
-        categories = Category.objects.all().values_list('id', 'name')
-        return categories
+def get_category_choices():
+    categories = Category.objects.all().values_list('id', 'name')
+    return categories
 
 
 class Profile(models.Model):
