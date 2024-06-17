@@ -31,7 +31,7 @@ class EditProfilePageView(generic.UpdateView):
 class ShowProfilePageView(DetailView):
     model = Profile
     template_name = 'registration/user_profile.html'
-
+    context_object_name = 'member'
     def get_context_data(self, *args, **kwargs):
         context = super(ShowProfilePageView, self).get_context_data(*args, **kwargs)
 
