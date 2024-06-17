@@ -1,6 +1,20 @@
 from django import forms
 from .models import Post, Category, Comment
 
+CATEGORY_CHOICES= [
+    ('blog', 'blog'),
+    ('esami', 'esami'),
+    ('libri/appunti','libri/appunti'),
+    ('news','news'),
+    ('ripetizioni','ripetizioni'),
+]
+
+choice_list = []
+
+for item in CATEGORY_CHOICES:
+    if item not in choice_list:
+        choice_list.append(item)
+
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -9,12 +23,9 @@ class PostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id':'elder', 'type':'hidden' }),
+            'category': forms.Select(choices=choice_list, attrs={'class': 'form-control', 'id': 'cats'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
-        
-    def __init__(self, *args, **kwargs):
-        super(PostForm, self).__init__(*args, **kwargs)
-        self.fields['category'].widget = forms.Select(choices=Category.get_category_choices(), attrs={'class': 'form-control', 'id': 'cats'})
 
 
 class EditForm(forms.ModelForm):
@@ -24,12 +35,9 @@ class EditForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
-    def __init__(self, *args, **kwargs):
-        super(EditForm, self).__init__(*args, **kwargs)
-        self.fields['category'].widget = forms.Select(choices=Category.get_category_choices(), attrs={'class': 'form-control', 'id': 'cats'})
-        
 
 class CommentForm(forms.ModelForm):
     class Meta:
