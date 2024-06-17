@@ -33,12 +33,12 @@ class CategoryView(ListView):
     template_name = 'categories.html'
 
     def get_context_data(self, *args, **kwargs):
-        cats = self.kwargs['cats']
-        return Post.objects.filter(category=cats)
-        
-    category_posts = Post.objects.filter(category = cats)
-    return render(request, 'categories.html', {'cats': cats.title(), 'category_posts': category_posts})
-
+        cats = self.kwargs['cats'].replace('-', ' ')
+        category_posts = Post.objects.filter(category=cats)
+        context = super(CategoryView, self).get_context_data(*args, **kwargs)
+        context['cats'] = cats.title()
+        context['category_posts'] = category_posts
+        return context
         
 class ArticleDetailView(DetailView):
     model = Post
