@@ -9,7 +9,6 @@ CATEGORY_CHOICES= [
     ('esami', 'esami'),
     ('libri/appunti','libri/appunti'),
     ('news','news'),
-    ('blog','blog'),
     ('ripetizioni','ripetizioni'),
 ]
 class Category(models.Model):
