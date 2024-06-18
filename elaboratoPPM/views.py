@@ -72,7 +72,7 @@ class AddCommentView(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = ('add_comment.html')
-    success_url = reverse_lazy('article_detail', kwargs={'pk': pk}))
+    success_url = reverse_lazy('article_detail', kwargs={'pk': pk})
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
