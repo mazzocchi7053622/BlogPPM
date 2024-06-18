@@ -3,22 +3,47 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <h1>Edit Settings</h1>
-    <br/>
-
-    <div class="form-group">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p}}
-            Inserisci siti web
-            <button class="btn btn-secondary">Update Profile</button>
-        </form>
-    </div>
-
+    {% if user.id == profile.user.id %}
+        <h1 class="text-center my-4">Edit Settings</h1>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                Inserisci siti web
+                                <div class="text-center mt-3">
+                                    <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="alert alert-danger" role="alert">
+                        You're not allowed here!
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% else %}
-
-    You're not allowed here!
-
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="alert alert-danger" role="alert">
+                    You're not allowed here!
+                </div>
+            </div>
+        </div>
+    </div>
 {% endif %}
 
 {% endblock %}
