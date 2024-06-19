@@ -45,11 +45,7 @@ class CommentForm(forms.ModelForm):
         fields = ('author', 'body')
 
         widgets = {
-<<<<<<< HEAD
             'author': forms.TextInput(attrs={'class': 'form-control'}),
-=======
-
             'name': forms.TextInput(attrs={'class': 'form-control'}),
->>>>>>> e285da0c6854eff31db12639ff8618b6dc337887
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
