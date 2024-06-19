@@ -30,11 +30,6 @@ class HomeView(ListView):
 
 
 def CategoryView(request, cats):
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all().values_list('name', flat=True)  # Ottieni tutti i nomi delle categorie
-        context = super().get_context_data(*args, **kwargs)
-        context['cat_menu'] = list(cat_menu)  # Converte in lista e aggiunge al contesto
-        return context
     category_posts = Post.objects.filter(category = cats)
     return render(request, 'categories.html', {'cats': cats.title(), 'category_posts': category_posts})
 
@@ -59,11 +54,6 @@ class ArticleDetailView(DetailView):
         return context
 
 class AddPostView(CreateView):
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
-        context = super(AddPostView, self).get_context_data(*args, **kwargs)
-        context['cat_menu'] = cat_menu
-        return context
     model = Post
     form_class = PostForm
     template_name = ('add_post.html')
@@ -78,7 +68,7 @@ class AddCommentView(CreateView):
         return super().form_valid(form)
         
     def get_success_url(self):
-        return reverse('article_detail', kwargs={'pk': self.kwargs['pk']})
+        return reverse('home')
 
 
 class UpdatePostView(UpdateView):

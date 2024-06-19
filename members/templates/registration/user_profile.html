@@ -4,7 +4,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <h1>{{ page_user }}</h1>
+    <h1>{{ post.author.username }}</h1>
     <br/>
     <div class="card mb-3" style="background-color: azure;">
         <div class="row g-0">
@@ -15,6 +15,7 @@
                     <p><strong>Età:</strong> {{ user.profile.età }}</p>
                     <p><strong>Città:</strong> {{ user.profile.città }}</p>
                     <p><strong>Hobby:</strong> {{ user.profile.hobby }}</p>
+                    <h1>{{post.author}}</h1>
 
                     {% if user.profile.website_url %}
                         <a href="{{ user.profile.website_url }}">Website</a>

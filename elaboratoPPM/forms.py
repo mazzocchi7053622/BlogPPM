@@ -22,7 +22,7 @@ class PostForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id':'elder', 'type':'hidden' }),
+            'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id':'elder2', 'type':'hidden' }),
             'category': forms.Select(choices=choice_list, attrs={'class': 'form-control', 'id': 'cats'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
@@ -45,6 +45,6 @@ class CommentForm(forms.ModelForm):
         fields = ('author', 'body')
 
         widgets = {
-            'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id':'elder', 'type':'hidden' }),
+            'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id':'elder2', 'type':'hidden' }),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
