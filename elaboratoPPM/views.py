@@ -22,11 +22,6 @@ class HomeView(ListView):
     model = Post
     template_name = 'home.html'
     ordering = ['-post_date']
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
-        context['cat_menu'] = cat_menu
-        return context
 
 
 def CategoryView(request, cats):
@@ -53,10 +48,15 @@ class ArticleDetailView(DetailView):
         context['liked'] = liked
         return context
 
-class AddPostView(CreateView):
+class AddCategoryView(CreateView):
     model = Post
     form_class = PostForm
     template_name = ('add_post.html')
+
+class AddPostView(CreateView):
+    model = Category
+    template_name = ('add_category.html')
+    fields = '__all__'
 
 class AddCommentView(CreateView):
     model = Comment

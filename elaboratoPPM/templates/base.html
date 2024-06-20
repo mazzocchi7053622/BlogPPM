@@ -26,7 +26,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
               <div class="dropdown-menu">
-                {% for item in category_choice %}
+                {% for item in cat_menu %}
                   <a class="dropdown-item" href="{%url 'category' item %}">{{item}}</a>
                 {% endfor %}
               </div>
@@ -34,6 +34,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'add_post'%}">Add Post</a>
             </li>
+            {%if user.is_staff%}
+                <li class="nav-item">
+              <a class="nav-link" href="{% url 'add_category'%}">Add Category</a>
+                </li>
+            {%endif%}
         {% else %}
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
