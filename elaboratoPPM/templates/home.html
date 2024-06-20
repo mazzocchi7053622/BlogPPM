@@ -9,7 +9,7 @@
                     {% if post.category == "blog" %}
                         <li>
                             <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a> -
-                            <a href="{% url 'category' post.category %}">{{ post.category }}</a>
+                            <a href="{% url 'categories' post.category %}">{{ post.category }}</a>
                             <span>&nbsp;-&nbsp;</span>{{ post.author.first_name }} {{ post.author.last_name }} - {{post.post_date}}
                             <small>{{ post.body|slice:"45"|safe }}...</small>
                         </li>
@@ -26,7 +26,7 @@
                     {% if post.category != "blog" %}
                         <li>
                             <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a> -
-                            <a href="{% url 'category' post.category %}">{{ post.category }}</a>
+                            <a href="{% url 'categories' post.category %}">{{ post.category }}</a>
                             <span>&nbsp;-&nbsp;</span>{{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }}
                             <small>{{ post.body|slice:"45"|safe }}...</small>
                         </li>

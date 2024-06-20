@@ -11,6 +11,12 @@ class CreateProfilePAgeView(CreateView):
     form_class = ProfilePageForm
     template_name = "registration/create_user_profile_page.html"
 
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super(CreateProfilePAgeView, self).get_context_data(*args, **kwargs)
+        context['cat_menu'] = cat_menu
+        return context
+
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -22,6 +28,12 @@ class EditProfilePageView(generic.UpdateView):
     template_name = 'registration/edit_profile_page.html'
     fields = ['bio', 'età', 'città','hobby','website_url', 'facebook_url', 'instagram_url']
     success_url = reverse_lazy('home')
+
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super(EditProfilePageView, self).get_context_data(*args, **kwargs)
+        context['cat_menu'] = cat_menu
+        return context
 
 class ShowProfilePageView(DetailView):
     model = Profile
@@ -42,6 +54,12 @@ class UserRegisterView(generic.CreateView):
     template_name ='registration/register.html'
     success_url = reverse_lazy('login')
 
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super(UserRegisterView, self).get_context_data(*args, **kwargs)
+        context['cat_menu'] = cat_menu
+        return context
+
 class UserEditView(generic.UpdateView):
     form_class = EditProfileForm
     template_name ='registration/edit_profile.html'
@@ -49,3 +67,9 @@ class UserEditView(generic.UpdateView):
 
     def get_object(self):
         return self.request.user
+
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super(UserEditView, self).get_context_data(*args, **kwargs)
+        context['cat_menu'] = cat_menu
+        return context
