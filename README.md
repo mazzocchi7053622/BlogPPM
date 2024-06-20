@@ -29,7 +29,7 @@ Il Blog Universitario "Aula 318" è un progetto che permette agli studenti regis
 ### Navigazione per Categoria
 - È disponibile un menu a tendina nella barra di navigazione per accedere alle singole categorie di post.
 - Il campo "blog" è eliminato per gli utenti non registrati o non autenticati.
-- 
+  
 ### Gestione Utente
 - Accesso alle pagine per la modifica dei dati personali e la creazione del profilo.
 - La sezione "profilo" permette agli utenti di visualizzare le modifiche relative al proprio profilo in un'unica pagina.
