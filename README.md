@@ -25,6 +25,7 @@ Il Blog Universitario "Aula 318" è un progetto che permette agli studenti regis
 - Cliccando sul titolo del post è possibile leggerlo integralmente.
 - È fornita una breve descrizione del profilo dell'autore.
 - Gli utenti possono interagire commentando e mettendo "like" al post.
+- ma SOLO l' autore del post può modificarlo o eliminarlo
 
 ### Navigazione per Categoria
 - È disponibile un menu a tendina nella barra di navigazione per accedere alle singole categorie di post.
